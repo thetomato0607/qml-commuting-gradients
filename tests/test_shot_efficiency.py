@@ -1,5 +1,8 @@
 """Regression test for the honest shot-efficiency comparison (fixes scaling_plot.png)."""
 
+# AI-assisted (Claude, 1987c21): written with Claude; expected values are the original
+# notebook's recorded outputs.
+
 from pennylane import numpy as np
 
 from qml_commuting_gradients.circuits import make_cg_circuit
@@ -12,6 +15,7 @@ N_QUBITS = 4
 
 
 def test_commuting_and_parameter_shift_produce_identical_trajectories():
+    """Both methods give the same accuracy trajectory; parameter-shift costs 2n = 8x the shots."""
     cg_circuit, cg_grad_circuit, _ = make_cg_circuit(N_QUBITS)
     split = load_iris_binary((0, np.pi / 2))
 

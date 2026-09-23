@@ -5,6 +5,8 @@ diagrams), but useful for sanity-checking the implemented circuits. Run as
 ``python -m scripts.generate_circuit_diagrams`` from the repo root.
 """
 
+# AI-assisted (Claude, 1987c21): ported with Claude from notebooks/00_original_reference.ipynb.
+
 from __future__ import annotations
 
 from pennylane import numpy as np
@@ -16,6 +18,7 @@ N_QUBITS = 4
 
 
 def run():
+    """Render the diagrams at fixed seeded parameters and return the saved paths."""
     cg_circuit, cg_grad_circuit, _ = make_cg_circuit(N_QUBITS)
     czz_circuit, _, _ = make_czz_circuit(N_QUBITS)
     cnot_circuit, _, _ = make_cnot_entangled_circuit(N_QUBITS)

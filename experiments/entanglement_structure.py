@@ -8,6 +8,8 @@ Three circuits sharing the same RY encoding and observable H:
 Circuit 1's gradient check is reused from ``commuting_gradient_check``.
 """
 
+# AI-assisted (Claude, 1987c21): ported with Claude from notebooks/00_original_reference.ipynb.
+
 from __future__ import annotations
 
 import pennylane as qml
@@ -26,6 +28,12 @@ N_QUBITS = 4
 
 
 def run():
+    """Run all three gradient checks plus the qubit-0 purity probe and print a summary table.
+
+    Returns:
+        Dict with the three max-abs gradient differences, the IsingZZ circuit's
+        qubit-0 purity, and the objects the tests reuse.
+    """
     cg_diff, x_mock, p_test, cg_circuit, cg_grad_circuit, H_cg = commuting_gradient_check.run()
 
     czz_circuit, czz_grad_circuit, H = make_czz_circuit(N_QUBITS)

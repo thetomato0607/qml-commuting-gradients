@@ -4,6 +4,8 @@ All three arms train the same circuit on the same data from the identical
 seeded initialisation, tracked over 100 epochs by test MSE.
 """
 
+# AI-assisted (Claude, 1987c21): ported with Claude from notebooks/00_original_reference.ipynb.
+
 from __future__ import annotations
 
 from pennylane import numpy as np
@@ -24,6 +26,11 @@ N_QUBITS = 4
 
 
 def run():
+    """Train the three arms, save ``loss_curves_3arm.png`` and print final MSE and accuracy.
+
+    Returns:
+        ``(losses_a, losses_b, losses_c)``, the per-epoch test MSE of each arm.
+    """
     cg_circuit, cg_grad_circuit, H_cg = make_cg_circuit(N_QUBITS)
     split = load_iris_binary((0, np.pi / 2))
 

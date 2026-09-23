@@ -10,6 +10,8 @@ assumed to already exist in scope, unlike the original notebook cell, which
 relied on other cells having been executed first.
 """
 
+# AI-assisted (Claude, 1987c21): ported with Claude from notebooks/00_original_reference.ipynb.
+
 from __future__ import annotations
 
 from pathlib import Path

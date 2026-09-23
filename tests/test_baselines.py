@@ -9,6 +9,9 @@ tolerance to match that print precision rather than asserting exact float
 equality against a rounded literal.
 """
 
+# AI-assisted (Claude, 1987c21): written with Claude; expected values are the original
+# notebook's recorded outputs.
+
 from pennylane import numpy as np
 
 from qml_commuting_gradients.circuits import make_ring_cnot_circuit
@@ -26,6 +29,7 @@ def _grad_fn(circuit):
 
 
 def test_per_sample_sgd_degrades_to_expected_accuracy():
+    """Per-sample SGD falls from 0.733 to 0.567 test accuracy, as in the notebook."""
     circuit = make_ring_cnot_circuit(N_QUBITS)
     split = load_iris_binary((0, np.pi))
     _, history = train_per_sample_sgd(
@@ -37,6 +41,7 @@ def test_per_sample_sgd_degrades_to_expected_accuracy():
 
 
 def test_batch_gd_reaches_expected_accuracy():
+    """Batch GD follows the notebook's 0.733 -> 0.767 -> 0.900 accuracy trajectory."""
     circuit = make_ring_cnot_circuit(N_QUBITS)
     split = load_iris_binary((0, np.pi))
     _, history = train_batch_gd(

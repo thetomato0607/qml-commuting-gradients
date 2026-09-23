@@ -4,6 +4,8 @@ Validates that the single-circuit-call commuting-gradient formula matches
 PennyLane's automatic differentiation to machine precision.
 """
 
+# AI-assisted (Claude, 1987c21): ported with Claude from notebooks/00_original_reference.ipynb.
+
 from __future__ import annotations
 
 import pennylane as qml
@@ -16,6 +18,12 @@ N_QUBITS = 4
 
 
 def run():
+    """Compare the commuting-generator gradient with autograd at a seeded random point.
+
+    Returns:
+        ``(max_abs_diff, x, params, cg_circuit, cg_grad_circuit, H)`` so that
+        ``entanglement_structure`` can reuse the same inputs and circuits.
+    """
     cg_circuit, cg_grad_circuit, H_cg = make_cg_circuit(N_QUBITS)
 
     np.random.seed(0)

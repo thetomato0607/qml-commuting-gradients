@@ -7,6 +7,8 @@ expect. Data samples (``x``) may remain plain NumPy, exactly as in the
 original notebook.
 """
 
+# AI-assisted (Claude, 1987c21): ported with Claude from notebooks/00_original_reference.ipynb.
+
 from __future__ import annotations
 
 from pennylane import numpy as np

@@ -3,6 +3,8 @@
 Run as ``python -m experiments.run_all`` from the repo root.
 """
 
+# AI-assisted (Claude, 1987c21): ported with Claude from notebooks/00_original_reference.ipynb.
+
 from __future__ import annotations
 
 from experiments import (
@@ -16,6 +18,7 @@ from experiments import (
 
 
 def run():
+    """Run the six experiments in report order; figures are written to ``figures/``."""
     print("\n" + "#" * 78)
     print("# 1. Baseline accuracy (per-sample SGD vs batch GD)")
     print("#" * 78)

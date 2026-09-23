@@ -4,6 +4,8 @@ Reproduces the original notebook's first training experiments on the 4-qubit
 RY+RY+CNOT-ring classifier, using the plain parameter-shift gradient.
 """
 
+# AI-assisted (Claude, 1987c21): ported with Claude from notebooks/00_original_reference.ipynb.
+
 from __future__ import annotations
 
 from pennylane import numpy as np
@@ -18,6 +20,11 @@ N_QUBITS = 4
 
 
 def run():
+    """Train both baselines on Iris and print test accuracy per epoch.
+
+    Returns:
+        ``(sgd_history, batch_history)``, each a list of ``(epoch, test_accuracy)``.
+    """
     circuit = make_ring_cnot_circuit(N_QUBITS)
     split = load_iris_binary((0, np.pi))
     grad_fn = lambda x, p: parameter_shift_gradient(circuit, x, p)

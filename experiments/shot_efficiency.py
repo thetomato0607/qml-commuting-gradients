@@ -7,6 +7,8 @@ run against the SAME circuit, data, and initialisation, with REAL per-method
 shot costs, and produces the canonical ``figures/scaling_plot.png``.
 """
 
+# AI-assisted (Claude, 1987c21): ported with Claude from notebooks/00_original_reference.ipynb.
+
 from __future__ import annotations
 
 from pennylane import numpy as np
@@ -22,6 +24,11 @@ N_QUBITS = 4
 
 
 def run():
+    """Train with both gradient methods, report the shot ratio and save ``scaling_plot.png``.
+
+    Returns:
+        ``(cg_history, ps_history)``, lists of ``(cumulative_shots, test_accuracy)``.
+    """
     cg_circuit, cg_grad_circuit, H_cg = make_cg_circuit(N_QUBITS)
     split = load_iris_binary((0, np.pi / 2))
 

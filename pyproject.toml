@@ -1,3 +1,4 @@
+# AI-assisted (Claude, 1987c21): written with Claude.
 [build-system]
 requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"

@@ -8,6 +8,8 @@ real circuit + PennyLane autograd, not the analytic formula plugged into
 itself.
 """
 
+# AI-assisted (Claude, 1987c21): ported with Claude from notebooks/00_original_reference.ipynb.
+
 from __future__ import annotations
 
 import pennylane as qml
@@ -24,6 +26,11 @@ from qml_commuting_gradients.plotting import plot_trainability
 
 
 def run():
+    """Estimate Var[dC/dtheta_0] over random initialisations for each n and save the plot.
+
+    Returns:
+        List of ``(n, empirical_var, theory_var, ratio)`` tuples.
+    """
     np.random.seed(TRAINABILITY_SEED)
     trainability_results = []
 

@@ -10,6 +10,8 @@ or ``gradients.commuting_gradient``), matching how the original notebook's own
 gradient functions closed over a fixed circuit.
 """
 
+# AI-assisted (Claude, 1987c21): ported with Claude from notebooks/00_original_reference.ipynb.
+
 from __future__ import annotations
 
 import pennylane as qml
@@ -24,6 +26,7 @@ def predict(x, params, circuit) -> int:
 
 
 def accuracy(X, Y, params, circuit) -> float:
+    """Fraction of samples in ``X`` whose ``predict`` label matches ``Y``."""
     preds = [predict(x, params, circuit) for x in X]
     return float(np.mean([p == y for p, y in zip(preds, Y)]))
 
@@ -34,6 +37,7 @@ def predict_with_bias(x, theta, b, circuit) -> int:
 
 
 def accuracy_with_bias(X, Y, theta, b, circuit) -> float:
+    """Fraction of samples in ``X`` whose ``predict_with_bias`` label matches ``Y``."""
     preds = [predict_with_bias(x, theta, b, circuit) for x in X]
     return float(np.mean([p == y for p, y in zip(preds, Y)]))
 

@@ -1,5 +1,8 @@
 """Regression test for the gradient-variance trainability sweep, n=2..14."""
 
+# AI-assisted (Claude, 1987c21): written with Claude; expected values are the original
+# notebook's recorded outputs.
+
 import pennylane as qml
 from pennylane import numpy as np
 
@@ -26,6 +29,7 @@ EXPECTED = {
 
 
 def test_empirical_variance_matches_recorded_values_and_theory():
+    """Empirical gradient variance matches the recorded values and sin^2(x)/(2n^2) for n=2..14."""
     np.random.seed(TRAINABILITY_SEED)
     for n in TRAINABILITY_N_LIST:
         circuit_n, _, _ = make_cg_circuit(n)

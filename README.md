@@ -99,3 +99,10 @@ in the report) is dropped entirely.
 than batch gradient descent, 0.733 -> 0.567) is preserved as an explicitly
 labeled negative-result experiment in `experiments/baseline_accuracy.py`,
 since it demonstrates why batch gradient descent is used everywhere else.
+
+## AI assistance
+
+Parts of this repository were written or changed with Claude, Anthropic's AI assistant. Affected code is marked in place with comments of the form `AI-assisted (Claude, <commit>)`; list them with `git grep -n "AI-assisted"`.
+
+- `1987c21`: the package, experiment scripts, tests and packaging were ported with Claude from the original notebook, `notebooks/00_original_reference.ipynb`.
+- The commit that added this section: docstrings and explanatory comments across the code.

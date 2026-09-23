@@ -1,6 +1,9 @@
 """Regression tests: every gradient method must match PennyLane autograd to the
 exact tolerance recorded in the original notebook."""
 
+# AI-assisted (Claude, 1987c21): written with Claude; expected values are the original
+# notebook's recorded outputs.
+
 import pennylane as qml
 from pennylane import numpy as np
 
@@ -21,6 +24,7 @@ N_QUBITS = 4
 
 
 def test_parameter_shift_matches_autograd_on_ring_cnot_circuit():
+    """Parameter-shift is exact on the RY + CNOT-ring classifier."""
     circuit = make_ring_cnot_circuit(N_QUBITS)
     x = np.array([0.1, 0.2, 0.3, 0.4], requires_grad=False)
     params = np.array([0.5, 1.0, 1.5, 2.0], requires_grad=True)
@@ -31,6 +35,7 @@ def test_parameter_shift_matches_autograd_on_ring_cnot_circuit():
 
 
 def test_parameter_shift_matches_autograd_on_cg_circuit():
+    """Parameter-shift reproduces the notebook's recorded gradient on the RZ-only circuit."""
     cg_circuit, _, _ = make_cg_circuit(N_QUBITS)
     np.random.seed(0)
     x_mock = np.array([0.3, 0.8, 1.1, 0.5], requires_grad=False)
@@ -44,6 +49,7 @@ def test_parameter_shift_matches_autograd_on_cg_circuit():
 
 
 def test_commuting_gradient_matches_autograd():
+    """The one-call commuting-generator gradient equals autograd to machine precision."""
     cg_circuit, cg_grad_circuit, _ = make_cg_circuit(N_QUBITS)
     np.random.seed(0)
     x_mock = np.array([0.3, 0.8, 1.1, 0.5], requires_grad=False)
@@ -56,6 +62,7 @@ def test_commuting_gradient_matches_autograd():
 
 
 def test_czz_gradient_matches_autograd_and_circuit_is_entangled():
+    """The grouped-measurement gradient stays exact once IsingZZ entanglement is added."""
     cg_circuit, _, _ = make_cg_circuit(N_QUBITS)
     czz_circuit, czz_grad_circuit, _ = make_czz_circuit(N_QUBITS)
     np.random.seed(0)

@@ -5,6 +5,8 @@ Unifies the two near-identical Iris-loading blocks from the original notebook
 single parameterized loader.
 """
 
+# AI-assisted (Claude, 1987c21): ported with Claude from notebooks/00_original_reference.ipynb.
+
 from __future__ import annotations
 
 from dataclasses import dataclass

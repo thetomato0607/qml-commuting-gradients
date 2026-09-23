@@ -5,6 +5,8 @@ Replaces the notebook's scattered/reused globals (``lr``, ``epochs``, ``seed``,
 Each config below reproduces one section's values exactly.
 """
 
+# AI-assisted (Claude, 1987c21): ported with Claude from notebooks/00_original_reference.ipynb.
+
 from __future__ import annotations
 
 from dataclasses import dataclass

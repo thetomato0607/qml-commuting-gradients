@@ -11,6 +11,8 @@ All trainable parameters passed into these QNodes must be constructed with
 ``requires_grad=True`` and ``qml.grad`` work as expected.
 """
 
+# AI-assisted (Claude, 1987c21): ported with Claude from notebooks/00_original_reference.ipynb.
+
 from __future__ import annotations
 
 import pennylane as qml

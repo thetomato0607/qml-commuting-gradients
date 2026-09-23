@@ -7,6 +7,8 @@ duplicate name for what ``scaling_plot.png`` now shows -- see the README for
 details on both changes.
 """
 
+# AI-assisted (Claude, 1987c21): ported with Claude from notebooks/00_original_reference.ipynb.
+
 from __future__ import annotations
 
 from pathlib import Path
