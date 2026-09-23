@@ -11,9 +11,13 @@ exponential/barren-plateau) gradient-variance scaling up to 14 qubits.
 This repo is a refactor of a research notebook (preserved at
 `notebooks/00_original_reference.ipynb`) into a reproducible package. See
 "Deviations from the original notebook" below for the two intentional changes
-made during the port.
+made during the port. The accompanying written report is not included in this
+repository.
 
 ## Setup
+
+Requires Python 3.11 or newer (`requires-python` in `pyproject.toml`); the lock
+file pins every dependency.
 
 ```bash
 python -m venv .venv
@@ -48,7 +52,7 @@ Figures are written to `figures/`.
 pytest
 ```
 
-Encodes every numeric result reported in the paper (gradient-check values,
+Encodes every numeric result in the accompanying report (gradient-check values,
 accuracy trajectories, the shot-cost table, the entanglement table, the
 trainability sweep) as regression tests against the original notebook's
 recorded outputs.
@@ -67,13 +71,13 @@ notebooks/                      the original notebook, preserved for provenance
 
 ## Results summary
 
-| Experiment | Result |
-|---|---|
-| Gradient correctness | Commuting-gen formula matches autograd to 6.94e-17 |
-| Baseline training | Batch GD reaches 0.900 test accuracy (per-sample SGD degrades to 0.567 -- kept as a documented negative baseline) |
-| Shot efficiency | Commuting-gen and parameter-shift reach identical 1.000 accuracy; 8:1 shot-cost ratio (60,000 vs 480,000 shots) |
-| Entanglement | IsingZZ preserves exact gradients (1.11e-16) at n circuits/gradient while genuinely entangling (purity 0.9917); CNOT breaks the structure (4.15e-02 error) |
-| Trainability | Gradient variance follows Var = sin^2(x)/(2n^2), confirmed to n=14, no exponential concentration |
+| Experiment | Result | Reproduce | Regression test |
+|---|---|---|---|
+| Gradient correctness | Commuting-gen formula matches autograd to 6.94e-17 | `python -m experiments.commuting_gradient_check` | `tests/test_gradients.py` |
+| Baseline training | Batch GD reaches 0.900 test accuracy (per-sample SGD degrades to 0.567 -- kept as a documented negative baseline) | `python -m experiments.baseline_accuracy` | `tests/test_baselines.py` |
+| Shot efficiency | Commuting-gen and parameter-shift reach identical 1.000 accuracy; 8:1 shot-cost ratio (60,000 vs 480,000 shots) | `python -m experiments.shot_efficiency` | `tests/test_shot_efficiency.py` |
+| Entanglement | IsingZZ preserves exact gradients (1.11e-16) at n circuits/gradient while genuinely entangling (purity 0.9917); CNOT breaks the structure (4.15e-02 error) | `python -m experiments.entanglement_structure` | `tests/test_entanglement.py` |
+| Trainability | Gradient variance follows Var = sin^2(x)/(2n^2), confirmed to n=14, no exponential concentration | `python -m experiments.trainability_scaling` | `tests/test_trainability.py` |
 
 ## Deviations from the original notebook
 
@@ -100,9 +104,18 @@ than batch gradient descent, 0.733 -> 0.567) is preserved as an explicitly
 labeled negative-result experiment in `experiments/baseline_accuracy.py`,
 since it demonstrates why batch gradient descent is used everywhere else.
 
+## Feedback
+
+Questions and suggestions are welcome: open an issue on GitHub or email yuilonlam0607@gmail.com.
+
+## License
+
+MIT — see [LICENSE](LICENSE).
+
 ## AI assistance
 
 Parts of this repository were written or changed with Claude, Anthropic's AI assistant. Affected code is marked in place with comments of the form `AI-assisted (Claude, <commit>)`; list them with `git grep -n "AI-assisted"`.
 
 - `1987c21`: the package, experiment scripts, tests and packaging were ported with Claude from the original notebook, `notebooks/00_original_reference.ipynb`.
-- The commit that added this section: docstrings and explanatory comments across the code.
+- `af2e63d`: docstrings and explanatory comments across the code.
+- The commit after `af2e63d`: LICENSE, README fixes, and removal of a machine-specific `-e c:\users\...` line from `requirements-lock.txt`.

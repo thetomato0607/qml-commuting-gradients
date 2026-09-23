@@ -30,7 +30,6 @@ pyparsing==3.3.2
 pytest==9.1.1
 python-dateutil==2.9.0.post0
 # Editable install with no version control (qml-commuting-gradients==0.1.0)
--e c:\users\frankie lam\onedrive\documents\qml demo
 requests==2.34.2
 rustworkx==0.18.1
 scikit-learn==1.9.1
